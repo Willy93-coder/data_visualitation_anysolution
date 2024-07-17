@@ -1,7 +1,7 @@
-function isValidNgsiV2Payload(payload: string): boolean {
+function isValidNgsiLdPayload(payload: string): boolean {
   try {
     const obj = JSON.parse(payload);
-    if (obj.id && obj.type) {
+    if (obj.id && obj.type && obj.id.includes("urn:ngsi-ld:")) {
       return true;
     }
     return false;
@@ -14,11 +14,11 @@ export async function POST(request: Request) {
   try {
     const text = await request.text();
 
-    if (isValidNgsiV2Payload(text)) {
+    if (isValidNgsiLdPayload(text)) {
       console.log(text);
       return new Response("Payload processed", { status: 200 });
     } else {
-      return new Response("Invalid NGSI-v2 payload", { status: 400 });
+      return new Response("Invalid NGSI-ld payload", { status: 400 });
     }
   } catch (error) {
     console.error("Error processing request:", error);

@@ -1,7 +1,7 @@
-"use client";
-
+'use client'
 import { useEffect } from "react";
 import { GridLayoutComponent } from "@/components/grid-layout-component/grid-layout-component";
+import { sql } from '@/db';
 
 const data = async () => {
   try {
@@ -21,6 +21,9 @@ const data = async () => {
 };
 
 export default function Home() {
+
+  // const xs = await sql`SELECT * FROM example`;
+  // console.log(xs);
   // Peticion a la API de queries que traera los datos estaticos
   // useEffect(() => {
   //   data().then((response) => {
@@ -37,7 +40,7 @@ export default function Home() {
 
   return (
     <main>
-      <GridLayoutComponent />
+      <GridLayoutComponent/>
     </main>
   );
 }

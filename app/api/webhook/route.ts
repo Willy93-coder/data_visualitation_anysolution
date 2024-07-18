@@ -1,22 +1,14 @@
-import { sendEventToClient, NgsildData, ngsiLdSchema } from '@/lib/utils';
-
-function isValidNgsiLdPayload(payload: any): boolean {
-    try {
-        const result = ngsiLdSchema.safeParse(payload);
-        return result.success;
-      } catch (error) {
-        return false;
-      }
-}
+import { ngsiLdSchema } from "@/lib/utils";
+import { insertNgsild } from "@/lib/actions";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    if (!isValidNgsiLdPayload(body)) {
+    const parsedBody = ngsiLdSchema.safeParse(body);
+    if (parsedBody.success === false) {
       return new Response("Invalid NGSI-ld payload", { status: 400 });
     }
-    console.log(body);
-    sendEventToClient(body as NgsildData);
+    insertNgsild(parsedBody.data);
     return new Response("Payload processed", { status: 200 });
   } catch (error) {
     console.error("Error processing request:", error);

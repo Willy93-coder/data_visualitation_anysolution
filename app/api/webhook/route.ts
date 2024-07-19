@@ -1,16 +1,16 @@
 import { ngsiLdSchema } from "@/lib/utils";
 import { insertNgsild } from "@/lib/actions";
 
-export async function POST(request: Request) {
+export async function POST(request: Request): Promise<Response> {
   try {
     const body = await request.json();
     const parsedBody = ngsiLdSchema.safeParse(body);
-    if (parsedBody.success === false) {
+    if (!parsedBody.success) {
       return new Response("Invalid NGSI-ld payload", { status: 400 });
     }
-    insertNgsild(parsedBody.data);
+    await insertNgsild(parsedBody.data);
     return new Response("Payload processed", { status: 200 });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error processing request:", error);
     return new Response("Internal Server Error", { status: 500 });
   }

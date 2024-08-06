@@ -1,19 +1,26 @@
-'use client'
+"use client";
 import { useEffect } from "react";
 import { GridLayoutComponent } from "@/components/grid-layout-component/grid-layout-component";
-import { sql } from '@/db';
+import { sql } from "@/db";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
+import AuthStatus from "@/components/authStatus";
 
-const data = async () => {
+const data = () => {
   try {
-    const response = await fetch("http://www.anysolution.org:1027/v2/entities");
-
-    if (!response.ok) {
-      throw new Error(
-        `Failed to connect to context broker: ${response.status}`
-      );
-    }
-
-    return await response.json();
+    return fetch("http://www.anysolution.org:1027/v2/entities")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Failed to connect to context broker: ${response.status}`
+          );
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.error(`Failed to connect to context broker: ${error}`);
+        throw new Error(`Failed to connect to context broker: ${error}`);
+      });
   } catch (error) {
     console.error(`Failed to connect to context broker: ${error}`);
     throw new Error(`Failed to connect to context broker: ${error}`);
@@ -21,26 +28,9 @@ const data = async () => {
 };
 
 export default function Home() {
-
-  // const xs = await sql`SELECT * FROM example`;
-  // console.log(xs);
-  // Peticion a la API de queries que traera los datos estaticos
-  // useEffect(() => {
-  //   data().then((response) => {
-  //     console.log(response);
-  //   });
-  // }, []);
-
-  // Peticion al webhook que traera los datos en tiempo real
-  // useEffect(() => {
-  //   data().then((response) => {
-  //     console.log(response);
-  //   });
-  // }, []);
-
   return (
     <main>
-      <GridLayoutComponent/>
+      <GridLayoutComponent />
     </main>
   );
 }

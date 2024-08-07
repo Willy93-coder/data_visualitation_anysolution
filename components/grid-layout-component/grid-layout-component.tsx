@@ -28,7 +28,7 @@ export function GridLayoutComponent() {
           key={panel.i}
           className="bg-white flex justify-center items-center pr-4 py-4 border border-black"
         >
-          <ChartContainer />
+          <ChartContainer type={"line"} />
         </div>
       ))}
     </ResponsiveGridLayout>

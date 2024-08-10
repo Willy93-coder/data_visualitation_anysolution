@@ -23,14 +23,30 @@ export function GridLayoutComponent() {
       margin={[10, 10]}
       containerPadding={[20, 20]}
     >
-      {layout.map((panel) => (
-        <div
-          key={panel.i}
-          className="bg-white flex justify-center items-center pr-4 py-4 border border-black"
-        >
-          <ChartContainer type={"line"} />
-        </div>
-      ))}
+      <div
+        key={0}
+        className="bg-white flex justify-center items-center pr-4 py-4 border border-black"
+      >
+        <ChartContainer type={"line"} />
+      </div>
+      <div
+        key={1}
+        className="bg-white flex justify-center items-center pr-4 py-4 border border-black"
+      >
+        <ChartContainer type={"area"} />
+      </div>
+      <div
+        key={2}
+        className="bg-white flex justify-center items-center pr-4 py-4 border border-black"
+      >
+        <ChartContainer type={"bar"} />
+      </div>
+      <div
+        key={3}
+        className="bg-white flex justify-center items-center pr-4 py-4 border border-black"
+      >
+        <ChartContainer type={"pie"} />
+      </div>
     </ResponsiveGridLayout>
   );
 }

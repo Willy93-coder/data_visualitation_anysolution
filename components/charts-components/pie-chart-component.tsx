@@ -1,12 +1,7 @@
 "use client";
 
-import {
-  Legend,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-} from "recharts";
+import { Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import CustomTooltip from "../custom-tool-tip/custom-tool-tip";
 
 const salesData = [
   {
@@ -56,9 +51,16 @@ const PieChartComponent = ({ width, height }: propsChart) => {
           <PieChart width={width} height={height}>
             <Tooltip
               content={
-                <CustomTooltip active={false} payload={undefined} label={""} />
+                <CustomTooltip
+                  active={true}
+                  payload={[{ value: 100 }, { value: 200 }]}
+                  label="Sales"
+                  wordquantity={"€"}
+                  items={[{ name: "Value", color: "text-blue-400" }]}
+                />
               }
             />
+
             <Legend />
             <Pie data={salesData} dataKey="revenue" fill="#2563eb" />
           </PieChart>
@@ -69,25 +71,3 @@ const PieChartComponent = ({ width, height }: propsChart) => {
 };
 
 export default PieChartComponent;
-
-const CustomTooltip = ({
-  active,
-  payload,
-  label,
-}: {
-  active: boolean;
-  payload: any;
-  label: string;
-}) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="p-4 bg-slate-900 flex flex-col gap-4 rounded-md">
-        <p className="text-medium text-lg text-blue-600">{label}</p>
-        <p className="text-sm text-blue-400">
-          Value:
-          <span className="ml-2">${payload[0].value}</span>
-        </p>
-      </div>
-    );
-  }
-};

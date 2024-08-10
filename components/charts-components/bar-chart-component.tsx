@@ -10,6 +10,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import CustomTooltip from "../custom-tool-tip/custom-tool-tip";
 
 const salesData = [
   {
@@ -63,11 +64,22 @@ var BarChartComponent = ({ width, height }: propsChart) => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
+
         <Tooltip
           content={
-            <CustomTooltip active={false} payload={undefined} label={""} />
+            <CustomTooltip
+              active={true}
+              payload={[{ value: 100 }, { value: 200 }]}
+              label="Sales"
+              wordquantity={"€"}
+              items={[
+                { name: "Revenue", color: "text-blue-400" },
+                { name: "Profit", color: "text-indigo-400" },
+              ]}
+            />
           }
         />
+
         <Legend />
         <Bar dataKey="revenue" fill="#2563eb" />
         <Bar dataKey="profit" fill="#8b5cf6" />
@@ -77,29 +89,3 @@ var BarChartComponent = ({ width, height }: propsChart) => {
 };
 
 export default BarChartComponent;
-
-const CustomTooltip = ({
-  active,
-  payload,
-  label,
-}: {
-  active: boolean;
-  payload: any;
-  label: string;
-}) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="p-4 bg-slate-900 flex flex-col gap-4 rounded-md">
-        <p className="text-medium text-lg text-blue-600">{label}</p>
-        <p className="text-sm text-blue-400">
-          Revenue:
-          <span className="ml-2">${payload[0].value}</span>
-        </p>
-        <p className="text-sm text-indigo-400">
-          Profit:
-          <span className="ml-2">${payload[1].value}</span>
-        </p>
-      </div>
-    );
-  }
-};

@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import CustomTooltip from "../custom-tool-tip/custom-tool-tip";
 
 const productSales = [
   {
@@ -64,7 +65,16 @@ var AreaChartComponent = ({ width, height }: propsChart) => {
 
         <Tooltip
           content={
-            <CustomTooltip active={false} payload={undefined} label={""} />
+            <CustomTooltip
+              active={true}
+              payload={[{ value: 100 }, { value: 200 }]}
+              label="Product sales"
+              wordquantity={"€"}
+              items={[
+                { name: "Product 1", color: "text-blue-400" },
+                { name: "Product 2", color: "text-indigo-400" },
+              ]}
+            />
           }
         />
         <Legend />
@@ -87,32 +97,6 @@ var AreaChartComponent = ({ width, height }: propsChart) => {
       </AreaChart>
     </ResponsiveContainer>
   );
-};
-
-const CustomTooltip = ({
-  active,
-  payload,
-  label,
-}: {
-  active: boolean;
-  payload: any;
-  label: string;
-}) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="p-4 bg-slate-900 flex flex-col gap-4 rounded-md">
-        <p className="text-medium text-lg text-blue-600">{label}</p>
-        <p className="text-sm text-blue-400">
-          Product 1:
-          <span className="ml-2">${payload[0].value}</span>
-        </p>
-        <p className="text-sm text-indigo-400">
-          Product 2:
-          <span className="ml-2">${payload[1].value}</span>
-        </p>
-      </div>
-    );
-  }
 };
 
 export default AreaChartComponent;

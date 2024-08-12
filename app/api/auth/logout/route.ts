@@ -9,8 +9,7 @@ export async function GET() {
   if (session) {
     const idToken = await getIdToken();
 
-    // this will log out the user on Keycloak side
-    var url = `${
+    const url = `${
       env.KEYCLOAK_END_SESSION_URL
     }?id_token_hint=${idToken}&post_logout_redirect_uri=${encodeURIComponent(
       env.NEXTAUTH_URL
@@ -18,6 +17,10 @@ export async function GET() {
 
     try {
       const resp = await fetch(url, { method: "GET" });
+      if (!resp.ok) {
+        console.error(`Logout failed with status: ${resp.status}`);
+        return new Response(null, { status: 500 });
+      }
     } catch (err) {
       console.error(err);
       return new Response(null, { status: 500 });

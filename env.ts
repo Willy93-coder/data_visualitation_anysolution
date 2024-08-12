@@ -12,6 +12,7 @@ const envSchema = z.object({
   NEXTAUTH_URL: z.string(),
   NEXTAUTH_SECRET: z.string(),
   KEYCLOAK_END_SESSION_URL: z.string(),
+  KEYCLOAK_REFRESH_TOKEN_URL: z.string(),
 });
 
 const result = envSchema.safeParse({
@@ -22,6 +23,7 @@ const result = envSchema.safeParse({
   NEXTAUTH_URL: process.env.NEXTAUTH_URL,
   NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   KEYCLOAK_END_SESSION_URL: process.env.KEYCLOAK_END_SESSION_URL,
+  KEYCLOAK_REFRESH_TOKEN_URL: process.env.KEYCLOAK_REFRESH_TOKEN_URL,
 });
 
 if (!result.success) {

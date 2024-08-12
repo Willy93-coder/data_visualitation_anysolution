@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { GridLayoutComponent } from "@/components/grid-layout-component/grid-layout-component";
-import { sql } from "@/db";
+// import { sql } from "@/db";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import AuthStatus from "@/components/authStatus";

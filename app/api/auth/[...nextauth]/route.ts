@@ -2,7 +2,7 @@ import NextAuth, { TokenSet } from "next-auth";
 import KeycloakProvider from "next-auth/providers/keycloak";
 import { AuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
-import { env } from "../../../../env.mjs";
+import { env } from "@/env";
 
 function requestRefreshOfAccessToken(token: JWT) {
   const body = new URLSearchParams();

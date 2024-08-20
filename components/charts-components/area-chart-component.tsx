@@ -10,73 +10,28 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import CustomTooltip from "../custom-tool-tip/custom-tool-tip";
-
-const productSales = [
-  {
-    name: "Jan",
-    product1: 4000,
-    product2: 2400,
-  },
-  {
-    name: "Feb",
-    product1: 3000,
-    product2: 2210,
-  },
-  {
-    name: "Mar",
-    product1: 2000,
-    product2: 2290,
-  },
-  {
-    name: "Apr",
-    product1: 2780,
-    product2: 2000,
-  },
-  {
-    name: "May",
-    product1: 1890,
-    product2: 2181,
-  },
-  {
-    name: "Jun",
-    product1: 2390,
-    product2: 2500,
-  },
-];
 
 type propsChart = {
   width: number;
   height: number;
+  data: any;
 };
 
-var AreaChartComponent = ({ width, height }: propsChart) => {
+var AreaChartComponent = ({ width, height, data }: propsChart) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <AreaChart
         width={width}
         height={height}
-        data={productSales}
+        data={data}
         margin={{ right: 30 }}
       >
         <YAxis />
         <XAxis dataKey="name" />
         <CartesianGrid strokeDasharray="5 5" />
 
-        <Tooltip
-          content={
-            <CustomTooltip
-              active={true}
-              payload={[{ value: 100 }, { value: 200 }]}
-              label="Product sales"
-              wordquantity={"€"}
-              items={[
-                { name: "Product 1", color: "text-blue-400" },
-                { name: "Product 2", color: "text-indigo-400" },
-              ]}
-            />
-          }
-        />
+        <Tooltip />
+
         <Legend />
 
         <Area

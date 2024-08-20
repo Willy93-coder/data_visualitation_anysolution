@@ -3,6 +3,7 @@ import AreaChartComponent from "./area-chart-component";
 import BarChartComponent from "./bar-chart-component";
 import LineChartComponent from "./line-chart-component";
 import PieChartComponent from "./pie-chart-component";
+import { data, productSales, salesData } from "@/mockdata";
 
 export function ChartContainer({ type }: { type: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -42,6 +43,7 @@ export function ChartContainer({ type }: { type: string }) {
           <AreaChartComponent
             width={dimensions.width}
             height={dimensions.height}
+            data={productSales}
           />
         </div>
       );
@@ -50,7 +52,8 @@ export function ChartContainer({ type }: { type: string }) {
         <div ref={containerRef} className="w-full h-full">
           <BarChartComponent
             width={dimensions.width}
-            height={dimensions.height}
+            height={dimensions.height} 
+            data={salesData}
           />
         </div>
       );
@@ -60,6 +63,7 @@ export function ChartContainer({ type }: { type: string }) {
           <LineChartComponent
             width={dimensions.width}
             height={dimensions.height}
+            data={data}
           />
         </div>
       );
@@ -69,6 +73,7 @@ export function ChartContainer({ type }: { type: string }) {
           <PieChartComponent
             width={dimensions.width}
             height={dimensions.height}
+            data={salesData}
           />
         </div>
       );

@@ -1,6 +1,6 @@
 import postgres from "postgres";
 
-const DB_URL = process.env.POSTGRES_URL;
+const DB_URL = process.env.POSTGRES_URL ?? "Patata";
 console.log(DB_URL);
 if (!DB_URL) {
   throw new Error(

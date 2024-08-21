@@ -9,15 +9,22 @@ const ResponsiveGridLayout = WidthProvider(GridLayout);
 
 export function GridLayoutComponent() {
   const layout = [
-    { i: "a", x: 0, y: 0, w: 8, h: 3 },
-    { i: "b", x: 1, y: 0, w: 8, h: 3 },
-    { i: "c", x: 2, y: 0, w: 8, h: 3 },
-    { i: "d", x: 3, y: 0, w: 8, h: 3 },
+    { i: "0", x: 0, y: 0, w: 3, h: 2 },
+    { i: "1", x: 3, y: 0, w: 4, h: 2 },
+    { i: "2", x: 0, y: 0, w: 4, h: 2 },
+    { i: "3", x: 8, y: 0, w: 5, h: 4 },
+  ];
+  const layout2 = [
+    { i: "0", x: 0, y: 0, w: 3, h: 2 },
+    { i: "1", x: 3, y: 0, w: 4, h: 2 },
+    { i: "2", x: 0, y: 0, w: 4, h: 2 },
+    { i: "3", x: 4, y: 0, w: 5, h: 2 },
   ];
 
   return (
     <ResponsiveGridLayout
       className="layout"
+      layout={layout}
       isBounded={true}
       compactType={null}
       margin={[10, 10]}

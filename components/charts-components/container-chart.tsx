@@ -3,9 +3,8 @@ import AreaChartComponent from "./area-chart-component";
 import BarChartComponent from "./bar-chart-component";
 import LineChartComponent from "./line-chart-component";
 import PieChartComponent from "./pie-chart-component";
-import { data, productSales, salesData } from "@/mockdata";
 
-export function ChartContainer({ type }: { type: string }) {
+export function ChartContainer({ type, data }: { type: string, data: any }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
@@ -43,7 +42,7 @@ export function ChartContainer({ type }: { type: string }) {
           <AreaChartComponent
             width={dimensions.width}
             height={dimensions.height}
-            data={productSales}
+            data={data}
           />
         </div>
       );
@@ -53,7 +52,7 @@ export function ChartContainer({ type }: { type: string }) {
           <BarChartComponent
             width={dimensions.width}
             height={dimensions.height} 
-            data={salesData}
+            data={data}
           />
         </div>
       );
@@ -73,7 +72,7 @@ export function ChartContainer({ type }: { type: string }) {
           <PieChartComponent
             width={dimensions.width}
             height={dimensions.height}
-            data={salesData}
+            data={data}
           />
         </div>
       );

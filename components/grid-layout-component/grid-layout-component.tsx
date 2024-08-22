@@ -4,6 +4,7 @@ import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import { WidthProvider } from "react-grid-layout";
 import { ChartContainer } from "../charts-components/container-chart";
+import { data, productSales, salesData } from "@/mockdata";
 
 const ResponsiveGridLayout = WidthProvider(GridLayout);
 
@@ -34,25 +35,25 @@ export function GridLayoutComponent() {
         key={0}
         className="bg-white flex justify-center items-center pr-4 py-4 border border-black"
       >
-        <ChartContainer type={"line"} />
+        <ChartContainer type={"line"} data={data} />
       </div>
       <div
         key={1}
         className="bg-white flex justify-center items-center pr-4 py-4 border border-black"
       >
-        <ChartContainer type={"area"} />
+        <ChartContainer type={"area"} data={productSales} />
       </div>
       <div
         key={2}
         className="bg-white flex justify-center items-center pr-4 py-4 border border-black"
       >
-        <ChartContainer type={"bar"} />
+        <ChartContainer type={"bar"} data={salesData} />
       </div>
       <div
         key={3}
         className="bg-white flex justify-center items-center pr-4 py-4 border border-black"
       >
-        <ChartContainer type={"pie"} />
+        <ChartContainer type={"pie"} data={salesData} />
       </div>
     </ResponsiveGridLayout>
   );

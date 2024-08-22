@@ -17,7 +17,7 @@ export function GridLayoutComponent() {
   ];
 
   const [layout, setLayout] = useState(() => {
-    const savedLayout = localStorage.getItem("layout");
+    const savedLayout = (typeof window !== "undefined") ? localStorage.getItem("layout") : null;
     return savedLayout ? JSON.parse(savedLayout) : defaultLayout;
   });
 

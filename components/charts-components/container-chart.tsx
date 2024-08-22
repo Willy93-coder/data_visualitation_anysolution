@@ -1,7 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
-import { LineChartComponent } from "./line-chart-component";
+import AreaChartComponent from "./area-chart-component";
+import BarChartComponent from "./bar-chart-component";
+import LineChartComponent from "./line-chart-component";
+import PieChartComponent from "./pie-chart-component";
 
-export function ChartContainer() {
+export function ChartContainer({ type, data }: { type: string, data: any }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
@@ -31,9 +34,53 @@ export function ChartContainer() {
       }
     };
   }, []);
-  return (
-    <div ref={containerRef} className="w-full h-full">
-      <LineChartComponent width={dimensions.width} height={dimensions.height} />
-    </div>
-  );
+
+  switch (type) {
+    case "area":
+      return (
+        <div ref={containerRef} className="w-full h-full">
+          <AreaChartComponent
+            width={dimensions.width}
+            height={dimensions.height}
+            data={data}
+          />
+        </div>
+      );
+    case "bar":
+      return (
+        <div ref={containerRef} className="w-full h-full">
+          <BarChartComponent
+            width={dimensions.width}
+            height={dimensions.height} 
+            data={data}
+          />
+        </div>
+      );
+    case "line":
+      return (
+        <div ref={containerRef} className="w-full h-full">
+          <LineChartComponent
+            width={dimensions.width}
+            height={dimensions.height}
+            data={data}
+          />
+        </div>
+      );
+    case "pie":
+      return (
+        <div ref={containerRef} className="w-full h-full">
+          <PieChartComponent
+            width={dimensions.width}
+            height={dimensions.height}
+            data={data}
+          />
+        </div>
+      );
+    default:
+      return (
+        <div ref={containerRef} className="w-full h-full">
+          <h1 className={"bg-sky-100 text-red-600"}>NO CHART</h1>
+        </div>
+      );
+  }
 }

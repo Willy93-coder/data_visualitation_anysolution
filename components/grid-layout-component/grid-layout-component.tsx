@@ -29,7 +29,6 @@ export function GridLayoutComponent() {
       isBounded={true}
       compactType={null}
       margin={[10, 10]}
-      containerPadding={[20, 20]}
     >
       <div
         key={0}

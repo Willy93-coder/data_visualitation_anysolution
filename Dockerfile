@@ -22,6 +22,7 @@ COPY next.config.mjs .
 COPY tsconfig.json .
 COPY tailwind.config.ts .
 COPY postcss.config.mjs .
+COPY mockdata.js .
 
 # Build static assets
 RUN npm run build

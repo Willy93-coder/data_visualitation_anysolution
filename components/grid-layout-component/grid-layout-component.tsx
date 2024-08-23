@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import GridLayout from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
@@ -9,23 +9,31 @@ import { data, productSales, salesData } from "@/mockdata";
 const ResponsiveGridLayout = WidthProvider(GridLayout);
 
 export function GridLayoutComponent() {
-  const layout = [
+  const defaultLayout = [
     { i: "0", x: 0, y: 0, w: 3, h: 2 },
     { i: "1", x: 3, y: 0, w: 4, h: 2 },
     { i: "2", x: 0, y: 0, w: 4, h: 2 },
     { i: "3", x: 8, y: 0, w: 5, h: 4 },
   ];
-  const layout2 = [
-    { i: "0", x: 0, y: 0, w: 3, h: 2 },
-    { i: "1", x: 3, y: 0, w: 4, h: 2 },
-    { i: "2", x: 0, y: 0, w: 4, h: 2 },
-    { i: "3", x: 4, y: 0, w: 5, h: 2 },
-  ];
+
+  const [layout, setLayout] = useState(() => {
+    const savedLayout = (typeof window !== "undefined") ? localStorage.getItem("layout") : null;
+    return savedLayout ? JSON.parse(savedLayout) : defaultLayout;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("layout", JSON.stringify(layout));
+  }, [layout]);
+
+  const onLayoutChange = (newLayout: any) => {
+    setLayout(newLayout);
+  };
 
   return (
     <ResponsiveGridLayout
       className="layout"
       layout={layout}
+      onLayoutChange={onLayoutChange}
       isBounded={true}
       compactType={null}
       margin={[10, 10]}

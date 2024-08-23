@@ -1,5 +1,10 @@
 "use client";
+import IconButtonComponent from "@/components/buttons-components/icon_button-component";
 import { GridLayoutComponent } from "@/components/grid-layout-component/grid-layout-component";
+import { Modal } from "@/components/modal/modal";
+import { CREATE_CHART } from "@/lib/utils";
+import { PlusIcon } from "@heroicons/react/24/solid";
+import { useState } from "react";
 
 const data = async () => {
   try {
@@ -19,6 +24,16 @@ const data = async () => {
 };
 
 export default function Home() {
+  const [isModalOpenCreateSubscription, setIsModalOpenCreateSubscription] =
+    useState<boolean>(false);
+  function handleOpenModal() {
+    setIsModalOpenCreateSubscription(true);
+  }
+
+  function handleCloseModal() {
+    setIsModalOpenCreateSubscription(false);
+  }
+
   // const xs = await sql`SELECT * FROM example`;
   // console.log(xs);
   // Peticion a la API de queries que traera los datos estaticos
@@ -36,8 +51,19 @@ export default function Home() {
   // }, []);
 
   return (
-    <main>
+    <main className="p-2">
+      <IconButtonComponent icon={PlusIcon} onClick={handleOpenModal} />
       <GridLayoutComponent />
+      <Modal
+        isOpen={isModalOpenCreateSubscription}
+        onClose={handleCloseModal}
+        actionButton1={{
+          function: handleCloseModal,
+          title: CREATE_CHART,
+        }}
+        cancelColorBtn="transparent"
+        title={CREATE_CHART}
+      />
     </main>
   );
 }

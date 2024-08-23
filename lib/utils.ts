@@ -25,3 +25,12 @@ export const ngsiLdSchema = z
   .catchall(attributeSchema.optional());
 
 export type NgsildData = z.infer<typeof ngsiLdSchema>;
+
+export const CREATE_CHART = "Create chart";
+
+export const selectOptionsCreateChartForm = [
+  { value: "area", label: "Area chart" },
+  { value: "bar", label: "Bar chart" },
+  { value: "line", label: "Line chart" },
+  { value: "pie", label: "Pie chart" },
+];

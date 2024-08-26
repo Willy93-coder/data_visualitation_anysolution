@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { links } from "@/lib/utils";
+import { links } from "@/lib/client/utils";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 

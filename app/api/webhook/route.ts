@@ -1,5 +1,5 @@
-import { ngsiLdSchema } from "@/lib/utils";
-import { insertNgsild } from "@/lib/actions";
+import { ngsiLdSchema } from "@/lib/server/utils";
+import { insertNgsild } from "@/lib/server/actions";
 
 export async function POST(request: Request): Promise<Response> {
   try {

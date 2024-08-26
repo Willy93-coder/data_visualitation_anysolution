@@ -6,6 +6,17 @@ import { env } from "@/env";
 import { jwtDecode } from "jwt-decode";
 import { encrypt } from "@/lib/server/encryption";
 
+declare module "next-auth/jwt" {
+  interface JWT {
+    access_token?: string;
+    id_token?: string;
+    refresh_token?: string;
+    expires_at?: number;
+    decoded?: any;
+    error?: string;
+  }
+}
+
 async function refreshAccessToken(token: JWT) {
   const resp = await fetch(`${env.KEYCLOAK_REFRESH_TOKEN_URL}`, {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -47,7 +58,9 @@ const authOptions: AuthOptions = {
   callbacks: {
     async jwt({ token, account }) {
       if (account) {
-        token.decoded = jwtDecode(account.access_token);
+        token.decoded = account.access_token
+          ? jwtDecode(account.access_token)
+          : undefined;
         token.id_token = account.id_token;
         token.access_token = account.access_token;
         token.refresh_token = account.refresh_token;
@@ -71,8 +84,10 @@ const authOptions: AuthOptions = {
     },
     async session({ session, token }) {
       // Send properties to the client
-      session.access_token = encrypt(token.access_token);
-      session.id_token = encrypt(token.id_token);
+      session.access_token = token.access_token
+        ? encrypt(token.access_token)
+        : undefined;
+      session.id_token = token.id_token ? encrypt(token.id_token) : undefined;
       session.roles = token.decoded.realm_access?.roles;
       session.error = token.error;
       return session;

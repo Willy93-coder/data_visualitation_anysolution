@@ -15,9 +15,10 @@ export function GridLayoutComponent() {
     { i: "2", x: 0, y: 0, w: 4, h: 2 },
     { i: "3", x: 8, y: 0, w: 5, h: 4 },
   ];
-
+  //TO DO: layout key not hardcoded, use a function to generate unique keys + test con react testing library
   const [layout, setLayout] = useState(() => {
-    const savedLayout = (typeof window !== "undefined") ? localStorage.getItem("layout") : null;
+    const savedLayout =
+      typeof window !== "undefined" ? localStorage.getItem("layout") : null;
     return savedLayout ? JSON.parse(savedLayout) : defaultLayout;
   });
 

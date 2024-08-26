@@ -34,3 +34,5 @@ export const selectOptionsCreateChartForm = [
   { value: "line", label: "Line chart" },
   { value: "pie", label: "Pie chart" },
 ];
+
+export const chartConfig = [];

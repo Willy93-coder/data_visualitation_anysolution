@@ -19,7 +19,9 @@ export default function AuthStatus() {
   }
 
   useEffect(() => {
-    if (
+    if (status === "unauthenticated") {
+      signIn("keycloak");
+    } else if (
       status != "loading" &&
       session &&
       (session as CustomSession)?.error === "RefreshAccessTokenError"
@@ -32,29 +34,25 @@ export default function AuthStatus() {
     return <div className="">Loading...</div>;
   } else if (session) {
     return (
-      <div className="">
-        <span className="text-black-100">{session.user?.email ?? ""}</span>{" "}
-        <button
-          className="bg-blue-900 font-bold text-white py-1 px-2 rounded border border-gray-50"
-          onClick={() => {
-            keycloakSessionLogOut().then(() => signOut({ callbackUrl: "/" }));
-          }}
-        >
-          Log out
-        </button>
+      <div className="flex-col justify-center items-center w-full mb-4">
+        <div className="flex justify-center">
+          <button
+            className="bg-blue-600 font-bold text-white py-1 px-2 rounded-lg mb-4"
+            onClick={() => {
+              keycloakSessionLogOut().then(() => signOut({ callbackUrl: "/" }));
+            }}
+          >
+            Log out
+          </button>
+        </div>
+        <div className="text-center">
+          <span className="text-black-100 text-center w-full">
+            {session.user?.email ?? ""}
+          </span>{" "}
+        </div>
       </div>
     );
   }
 
-  return (
-    <div className="">
-      Not logged in.{" "}
-      <button
-        className="bg-blue-900 font-bold text-white py-1 px-2 rounded border border-gray-50"
-        onClick={() => signIn("keycloak")}
-      >
-        Log in
-      </button>
-    </div>
-  );
+  return null;
 }

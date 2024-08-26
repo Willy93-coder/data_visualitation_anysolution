@@ -7,8 +7,8 @@ import SessionProviderWrapper from "@/components/sessionProviderWrapper";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Visualitation data",
-  description: "Visualitation data",
+  title: "Visualization data",
+  description: "Visualization data",
 };
 
 export default function RootLayout({

@@ -1,12 +1,14 @@
+"use client";
+
 import {
-  LineChart,
-  Line,
-  CartesianGrid,
+  BarChart,
+  Bar,
   XAxis,
   YAxis,
-  ResponsiveContainer,
+  CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 
 type propsChart = {
@@ -15,10 +17,10 @@ type propsChart = {
   data: any;
 };
 
-var LineChartComponent = ({ width, height, data }: propsChart) => {
+var BarChartComponent = ({ width, height, data }: propsChart) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <LineChart
+      <BarChart
         width={width}
         height={height}
         data={data}
@@ -26,17 +28,18 @@ var LineChartComponent = ({ width, height, data }: propsChart) => {
           right: 30,
         }}
       >
-        <CartesianGrid stroke="#ccc" strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
 
         <Tooltip />
 
         <Legend />
-        <Line type="monotone" dataKey="uv" stroke="#3b82f6" />
-      </LineChart>
+        <Bar dataKey="revenue" fill="#2563eb" />
+        <Bar dataKey="profit" fill="#8b5cf6" />
+      </BarChart>
     </ResponsiveContainer>
   );
 };
 
-export default LineChartComponent;
+export default BarChartComponent;

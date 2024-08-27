@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { XMarkIcon } from "@heroicons/react/16/solid";
-import IconButtonComponent from "../buttons-components/icon_button-component";
-import CreateChartFormComponent from "../forms/create_chart_form_component";
+import IconButtonComponent from "../buttons-components/icon-button-component";
+import CreateChartFormComponent from "../forms/create-chart-form-component";
 import { selectOptionsCreateChartForm } from "@/lib/utils";
 
 type ModalProps = {
@@ -103,8 +103,6 @@ export function Modal({
           <CreateChartFormComponent
             label="Type"
             options={selectOptionsCreateChartForm}
-            selectedValue={typeChartValue}
-            onChange={(e) => setTypeChartValue(e.target.value)}
           />
           <div className="flex flex-row gap-4 items-center">
             {onClose2 && (

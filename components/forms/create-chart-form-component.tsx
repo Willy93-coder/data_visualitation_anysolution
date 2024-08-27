@@ -1,11 +1,11 @@
-import { chartConfig, ChartConfigType } from "@/lib/utils";
+import { chartConfig, ChartConfigType, ChartType } from "@/lib/utils";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import GenericButtonComponent from "../buttons-components/generic-button-component";
 
 type SelectProps = {
   label: string;
-  options: { value: string; label: string }[];
+  options: { value: ChartType; label: string }[];
 };
 
 export default function CreateChartFormComponent({

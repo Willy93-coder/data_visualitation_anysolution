@@ -1,10 +1,11 @@
 "use client";
-import IconButtonComponent from "@/components/buttons-components/icon_button-component";
+import IconButtonComponent from "@/components/buttons-components/icon-button-component";
 import { GridLayoutComponent } from "@/components/grid-layout-component/grid-layout-component";
 import { Modal } from "@/components/modal/modal";
 import { CREATE_CHART } from "@/lib/utils";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import { chartConfig } from "@/lib/utils";
 
 const data = async () => {
   try {
@@ -53,14 +54,10 @@ export default function Home() {
   return (
     <main className="p-2">
       <IconButtonComponent icon={PlusIcon} onClick={handleOpenModal} />
-      <GridLayoutComponent />
+      <GridLayoutComponent chart={chartConfig} />
       <Modal
         isOpen={isModalOpenCreateSubscription}
         onClose={handleCloseModal}
-        actionButton1={{
-          function: handleCloseModal,
-          title: CREATE_CHART,
-        }}
         cancelColorBtn="transparent"
         title={CREATE_CHART}
       />

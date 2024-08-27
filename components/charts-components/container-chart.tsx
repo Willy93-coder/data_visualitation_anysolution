@@ -3,8 +3,15 @@ import AreaChartComponent from "./area-chart-component";
 import BarChartComponent from "./bar-chart-component";
 import LineChartComponent from "./line-chart-component";
 import PieChartComponent from "./pie-chart-component";
+import { ChartType } from "@/lib/utils";
 
-export function ChartContainer({ type, data }: { type: string, data: any }) {
+export function ChartContainer({
+  type,
+  data,
+}: {
+  type: ChartType;
+  data?: any;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
@@ -35,8 +42,8 @@ export function ChartContainer({ type, data }: { type: string, data: any }) {
     };
   }, []);
 
-  switch (type) {
-    case "area":
+  switch (+type) {
+    case ChartType.AREA:
       return (
         <div ref={containerRef} className="w-full h-full">
           <AreaChartComponent
@@ -46,17 +53,17 @@ export function ChartContainer({ type, data }: { type: string, data: any }) {
           />
         </div>
       );
-    case "bar":
+    case ChartType.BAR:
       return (
         <div ref={containerRef} className="w-full h-full">
           <BarChartComponent
             width={dimensions.width}
-            height={dimensions.height} 
+            height={dimensions.height}
             data={data}
           />
         </div>
       );
-    case "line":
+    case ChartType.LINE:
       return (
         <div ref={containerRef} className="w-full h-full">
           <LineChartComponent
@@ -66,7 +73,7 @@ export function ChartContainer({ type, data }: { type: string, data: any }) {
           />
         </div>
       );
-    case "pie":
+    case ChartType.PIE:
       return (
         <div ref={containerRef} className="w-full h-full">
           <PieChartComponent

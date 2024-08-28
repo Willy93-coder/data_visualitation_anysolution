@@ -6,11 +6,13 @@ import GenericButtonComponent from "../buttons-components/generic-button-compone
 type SelectProps = {
   label: string;
   options: { value: ChartType; label: string }[];
+  onClose?: () => void;
 };
 
 export default function CreateChartFormComponent({
   options,
   label,
+  onClose,
 }: SelectProps) {
   const {
     register,
@@ -27,6 +29,7 @@ export default function CreateChartFormComponent({
     };
     chartConfig.push(chartConfigObj);
     console.log("Chart type arr: ", chartConfig);
+    if (onClose !== undefined) onClose();
   };
 
   return (

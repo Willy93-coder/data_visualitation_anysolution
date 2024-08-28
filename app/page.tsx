@@ -2,10 +2,10 @@
 import IconButtonComponent from "@/components/buttons-components/icon-button-component";
 import { GridLayoutComponent } from "@/components/grid-layout-component/grid-layout-component";
 import { Modal } from "@/components/modal/modal";
-import { CREATE_CHART } from "@/lib/utils";
+import { CREATE_CHART } from "@/lib/helpers";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
-import { chartConfig } from "@/lib/utils";
+import { chartConfig } from "@/lib/helpers";
 
 const data = async () => {
   try {

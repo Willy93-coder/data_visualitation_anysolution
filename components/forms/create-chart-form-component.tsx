@@ -1,4 +1,4 @@
-import { chartConfig, ChartConfigType, ChartType } from "@/lib/utils";
+import { chartConfig, ChartConfigType, ChartType } from "@/lib/helpers";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import GenericButtonComponent from "../buttons-components/generic-button-component";

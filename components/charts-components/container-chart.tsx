@@ -3,7 +3,7 @@ import AreaChartComponent from "./area-chart-component";
 import BarChartComponent from "./bar-chart-component";
 import LineChartComponent from "./line-chart-component";
 import PieChartComponent from "./pie-chart-component";
-import { ChartType } from "@/lib/utils";
+import { ChartType } from "@/lib/helpers";
 
 export function ChartContainer({
   type,

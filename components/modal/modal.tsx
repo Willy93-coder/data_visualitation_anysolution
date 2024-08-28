@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { XMarkIcon } from "@heroicons/react/16/solid";
 import IconButtonComponent from "../buttons-components/icon-button-component";
 import CreateChartFormComponent from "../forms/create-chart-form-component";
-import { selectOptionsCreateChartForm } from "@/lib/utils";
+import { selectOptionsCreateChartForm } from "@/lib/helpers";
 
 type ModalProps = {
   isOpen: boolean;

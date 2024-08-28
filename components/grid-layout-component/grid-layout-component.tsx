@@ -5,7 +5,7 @@ import "react-resizable/css/styles.css";
 import { WidthProvider } from "react-grid-layout";
 import { ChartContainer } from "../charts-components/container-chart";
 import { data, productSales, salesData } from "@/mockdata";
-import { ChartConfigType, ChartType } from "@/lib/utils";
+import { ChartConfigType, ChartType } from "@/lib/helpers";
 
 const ResponsiveGridLayout = WidthProvider(GridLayout);
 

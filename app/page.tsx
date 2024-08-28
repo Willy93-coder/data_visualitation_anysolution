@@ -25,14 +25,13 @@ const data = async () => {
 };
 
 export default function Home() {
-  const [isModalOpenCreateSubscription, setIsModalOpenCreateSubscription] =
-    useState<boolean>(false);
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   function handleOpenModal() {
-    setIsModalOpenCreateSubscription(true);
+    setIsOpenModal(true);
   }
 
   function handleCloseModal() {
-    setIsModalOpenCreateSubscription(false);
+    setIsOpenModal(false);
   }
 
   // const xs = await sql`SELECT * FROM example`;
@@ -56,7 +55,7 @@ export default function Home() {
       <IconButtonComponent icon={PlusIcon} onClick={handleOpenModal} />
       <GridLayoutComponent chart={chartConfig} />
       <Modal
-        isOpen={isModalOpenCreateSubscription}
+        isOpen={isOpenModal}
         onClose={handleCloseModal}
         cancelColorBtn="transparent"
         title={CREATE_CHART}

@@ -103,6 +103,7 @@ export function Modal({
           <CreateChartFormComponent
             label="Type"
             options={selectOptionsCreateChartForm}
+            onClose={handleCloseModal}
           />
           <div className="flex flex-row gap-4 items-center">
             {onClose2 && (
